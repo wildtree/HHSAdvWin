@@ -600,7 +600,7 @@ look room
                                     case 3: // clear
                                         if (properties.Attrs.PlaySound)
                                             audio!.Play(0);
-                                        ZRoll endroll = new ZRoll { Owner = this, Credits = credits, TotalDuration = TimeSpan.FromSeconds(40) };
+                                        ZRoll endroll = new ZRoll { Owner = this, Credits = credits, TotalDuration = TimeSpan.FromSeconds(35) };
                                         endroll.Completed += (s, e) =>
                                         {
                                             DrawScreen(true);
