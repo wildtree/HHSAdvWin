@@ -54,6 +54,7 @@ namespace HHSAdvWin
 
         public Canvas(Image parent)
         {
+            //var dpi = VisualTreeHelper.GetDpi(System.Windows.Application.Current.MainWindow);
             Bitmap = new WriteableBitmap(256, 152, 96, 96, PixelFormats.Pbgra32, null);
             viewport = new Int32Rect { X = 0, Y = 0, Width = 256, Height = 152 };
             parent.Source = Bitmap;
@@ -327,7 +328,16 @@ namespace HHSAdvWin
             Sepia
         };
 
-        public FilterType ColorFilterType { get; set; } = FilterType.None;
+        private FilterType filterType = FilterType.None;
+        public FilterType ColorFilterType
+        {
+            get { return filterType; }
+            set 
+            {
+                filterType = value;
+                colorFilter();
+            }
+        }
         public void colorFilter()
         {
             float[] f;

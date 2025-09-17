@@ -71,7 +71,7 @@ namespace HHSAdvWin
             )
             {
                 TextAlignment = TextAlignment.Center,
-                MaxTextWidth = Owner.ActualWidth - fontSize,
+                MaxTextWidth = Owner.ActualWidth,
                 MaxTextHeight = double.PositiveInfinity,
                 MaxLineCount = int.MaxValue
             };
@@ -85,7 +85,7 @@ namespace HHSAdvWin
                 dc.DrawText(formatted, new Point(0, 0));
             }
 
-            var rtb = new RenderTargetBitmap(bmpWidth, bmpHeight, dpi.PixelsPerInchX, dpi.PixelsPerInchY, PixelFormats.Pbgra32);
+            var rtb = new RenderTargetBitmap(bmpWidth, bmpHeight, 96, 96, PixelFormats.Pbgra32);
             rtb.Render(dv);
             return rtb;
 
