@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HHSAdvWin"
         FocusManager.FocusedElement="{Binding ElementName=InputTextBox}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="320" Closing="MainWindow_Closing">
+        Title="ハイハイスクールアドベンチャー" Height="450" Width="320" Closing="MainWindow_Closing">
     <Grid ClipToBounds="False">
         <Grid x:Name="MainContent">
             <!-- 行の高さ定義 -->
