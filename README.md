@@ -2,7 +2,7 @@
 
 満を持して（？）のハイハイスクールアドベンチャーWindows版です。
 
-# ビルド
+## ビルド
 
 WPFアプリケーションなので、多分、Visual Studio 2022 Community Editionなどが必要じゃないかと思います。
 わたしは、Visual Studio 2022 Commmunity Editionで開発しました。
