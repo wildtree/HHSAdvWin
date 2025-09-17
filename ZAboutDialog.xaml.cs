@@ -36,7 +36,8 @@ namespace HHSAdvWin
                 {
                     return @"<FlowDocument xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'>
 <Paragraph>
-<Span FontSize='16' FontWeight='Bold'>High High School Adventure</Span>
+<Span FontSize='16' FontWeight='Bold'>High High School Adventure</Span><LineBreak/>
+<Bold>Version 1.0</Bold>
 </Paragraph>
 <Paragraph>
 PalmOS version: hiro © 2002-2004<LineBreak/>
@@ -48,24 +49,36 @@ SDL version: hiro © 2025<LineBreak/>
 Windows version: hiro © 2025<LineBreak/>
 </Paragraph>
 <Paragraph>
-<Bold>- Project ZOBPlus -</Bold><LineBreak/>
-Hayami &lt;hayami@zob.jp&gt;<LineBreak/>
-Exit &lt;exit@zob.jp&gt;<LineBreak/>
-ezumi &lt;ezumi@zob.jp&gt;<LineBreak/>
-Ogu &lt;ogu@zob.jp&gt;<LineBreak/>
-neopara &lt;neopara@zob.jp&gt;<LineBreak/>
-hiro &lt;hiro@zob.jp&gt;<LineBreak/>
+<Bold>- Project ZOBPlus -</Bold>
 </Paragraph>
+<Table CellSpacing='5' BorderBrush='Black' BorderThickness='0'>
+<Table.Columns>
+<TableColumn/>
+<TableColumn/>
+<TableColumn/>
+</Table.Columns>
+<TableRowGroup>
+<TableRow>
+<TableCell><Paragraph>Hayami &lt;hayami@zob.jp&gt;</Paragraph></TableCell>
+<TableCell><Paragraph>Exit &lt;exit@zob.jp&gt;</Paragraph></TableCell>
+<TableCell><Paragraph>ezumi &lt;ezumi@zob.jp&gt;</Paragraph></TableCell>
+</TableRow>
+<TableRow>
+<TableCell><Paragraph>Ogu &lt;ogu@zob.jp&gt;</Paragraph></TableCell>
+<TableCell><Paragraph>neopara &lt;neopara@zob.jp&gt;</Paragraph></TableCell>
+<TableCell><Paragraph>hiro &lt;hiro@zob.jp&gt;</Paragraph></TableCell>
+</TableRow>
+</TableRowGroup>
+</Table>
 <Paragraph>
 <Bold>--- Original Staff ---</Bold><LineBreak/>
 Directed By HIRONOBU NAKAGUCHI<LineBreak/>
 </Paragraph>
 <Paragraph>
-<Bold>- Graphic Designers -</Bold><LineBreak/>
+<Bold>- Graphic Designers -</Bold>
 </Paragraph>
 <Table CellSpacing='5' BorderBrush='Black' BorderThickness='0'>
 <Table.Columns>
-<TableColumn/>
 <TableColumn/>
 <TableColumn/>
 <TableColumn/>
@@ -77,26 +90,29 @@ Directed By HIRONOBU NAKAGUCHI<LineBreak/>
 <TableCell><Paragraph>YUMIKO HOSONO</Paragraph></TableCell>
 <TableCell><Paragraph>HIRONOBU NAKAGUCHI</Paragraph></TableCell>
 <TableCell><Paragraph>TOSHIHIKO YANAGITA</Paragraph></TableCell>
-<TableCell><Paragraph>TOHRU OHYAMA</Paragraph></TableCell>
 </TableRow>
 <TableRow>
+<TableCell><Paragraph>TOHRU OHYAMA</Paragraph></TableCell>
 <TableCell><Paragraph>MASANORI ISHII</Paragraph></TableCell>
 <TableCell><Paragraph>YASUSHI SHIGEHARA</Paragraph></TableCell>
 <TableCell><Paragraph>HIDETOSHI SUZUKI</Paragraph></TableCell>
-<TableCell><Paragraph>TATSUYA UCHIBORI</Paragraph></TableCell>
-<TableCell><Paragraph>MASAKI NOZAWA</Paragraph></TableCell>
 </TableRow>
 <TableRow>
+<TableCell><Paragraph>TATSUYA UCHIBORI</Paragraph></TableCell>
+<TableCell><Paragraph>MASAKI NOZAWA</Paragraph></TableCell>
 <TableCell><Paragraph>TOMOKO OHKAWA</Paragraph></TableCell>
 <TableCell><Paragraph>FUMIKAZU SHIRATSUCHI</Paragraph></TableCell>
+</TableRow>
+<TableRow>
 <TableCell><Paragraph>YASUNORI YAMADA</Paragraph></TableCell>
 <TableCell><Paragraph>UNENORI TAKIMOTO</Paragraph></TableCell>
+<TableCell><Paragraph> </Paragraph></TableCell>
 <TableCell><Paragraph> </Paragraph></TableCell>
 </TableRow>
 </TableRowGroup>
 </Table>
 <Paragraph>
-<Bold>- Message Converters -</Bold><LineBreak/>
+<Bold>- Message Converters -</Bold>
 </Paragraph>
 <Table CellSpacing='5' BorderBrush='Black' BorderThickness='0'>
 <Table.Columns>
@@ -123,9 +139,24 @@ HIRONOBU NAKAGUCHI<LineBreak/>
 MASAO MIZOBE<LineBreak/>
 </Paragraph>
 <Paragraph>
-<Bold>- Special Thanks To -</Bold><LineBreak/>
-HIROSHI YAMAMOTO / TAKAYOSHI KASHIWAGI<LineBreak/>
+<Bold>- Special Thanks To -</Bold>
 </Paragraph>
+<Table CellSpacing='5' BorderBrush='Black' BorderThickness='0'>
+<Table.Columns>
+<TableColumn/>
+<TableColumn/>
+<TableColumn/>
+<TableColumn/>
+</Table.Columns>
+<TableRowGroup>
+<TableRow>
+<TableCell><Paragraph>HIROSHI YAMAMOTO</Paragraph></TableCell>
+<TableCell><Paragraph>TAKAYOSHI KASHIWAGI</Paragraph></TableCell>
+<TableCell><Paragraph> </Paragraph></TableCell>
+<TableCell><Paragraph> </Paragraph></TableCell>
+</TableRow>
+</TableRowGroup>
+</Table>
 <Paragraph>
 <Bold>- Cooperate with -</Bold><LineBreak/>
 Furniture KASHIWAGI<LineBreak/>
