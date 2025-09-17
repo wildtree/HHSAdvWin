@@ -1,0 +1,19 @@
+﻿<Window x:Name="ZDialogWindow" x:Class="HHSAdvWin.ZDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HHSAdvWin"
+        mc:Ignorable="d"
+        Title="ZDialog" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    <StackPanel>
+        <TextBox x:Name="textBox" TextWrapping="Wrap" Text="TextBox" FontSize="16" Margin="8,8,8,8" HorizontalAlignment="Center" BorderThickness="0 "/>
+        <RadioButton x:Name="Option1" Content="RadioButton" GroupName="Selection" Tag="1" Margin="8,4,8,4"/>
+        <RadioButton x:Name="Option2" Content="RadioButton" GroupName="Selection" Tag="2" Margin="8,4,8,4"/>
+        <RadioButton x:Name="Option3" Content="RadioButton" GroupName="Selection" Tag="3" Margin="8,4,8,4"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="Okay" Content="了解" Click="Okay_Clicked" Width="80" IsDefault="True" Margin="5,5,5,5"/>
+            <Button x:Name="Cancel" Content="取消" Width="80" IsCancel="True" IsDefault="True" Margin="5,5,5,5"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

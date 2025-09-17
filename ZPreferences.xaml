@@ -1,0 +1,17 @@
+﻿<Window x:Name="ZPreferencesDialog" x:Class="HHSAdvWin.ZPreferences"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HHSAdvWin"
+        mc:Ignorable="d"
+        Title="設定" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    <StackPanel>
+        <CheckBox x:Name="playOpening" Content="オープニングを再生します" Margin="8,8,8,8" IsChecked="{Binding OpeningRoll}"/>
+        <CheckBox x:Name="playSounds" Content="音を鳴らします" Margin="8,8,8,8" IsChecked="{Binding PlaySound}"/>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="btnOkay" Content="設定" Margin="5,5,5,5" Width="80" IsDefault="True" Click="Okay_Click"/>
+            <Button x:Name="btnCancel" Content="取消" Margin="5,5,5,5" Width="80" IsCancel="True" IsDefault="True"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
