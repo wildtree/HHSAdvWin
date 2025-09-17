@@ -1,4 +1,13 @@
-# �n�C�n�C�X�N�[���A�h�x���`���[ for Windows
+# ハイハイスクールアドベンチャー for Windows
 
-���������āi�H�j�̃n�C�n�C�X�N�[���A�h�x���`���[Windows�łł��B
+満を持して（？）のハイハイスクールアドベンチャーWindows版です。
+
+# ビルド
+
+WPFアプリケーションなので、多分、Visual Studio 2022 Community Editionなどが必要じゃないかと思います。
+わたしは、Visual Studio 2022 Commmunity Editionで開発しました。
+
+AppData\Local\HHSAdvWin の中身を $env:LOCALAPPDATA\HHSAdvWinにコピーして、ビルドしてできた HHSAdvWin.exeを起動してください。
+
+
 
