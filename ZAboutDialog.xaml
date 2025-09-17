@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HHSAdvWin"
         mc:Ignorable="d"
-        Title="ZAboutDialog" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+        Title="このゲームについて" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
