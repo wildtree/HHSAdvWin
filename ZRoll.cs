@@ -71,7 +71,7 @@ namespace HHSAdvWin
             )
             {
                 TextAlignment = TextAlignment.Center,
-                MaxTextWidth = Owner.ActualWidth,
+                MaxTextWidth = Owner.ActualWidth - fontSize,
                 MaxTextHeight = double.PositiveInfinity,
                 MaxLineCount = int.MaxValue
             };
