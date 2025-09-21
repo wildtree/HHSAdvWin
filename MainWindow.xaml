@@ -8,11 +8,11 @@
         mc:Ignorable="d"
         Title="ハイハイスクールアドベンチャー" Height="450" Width="320" Closing="MainWindow_Closing"
         WindowStyle="None"
-        AllowsTransparency="False">
+        AllowsTransparency="True">
     <!-- WindowChrome: OSへキャプション高さ等を通知 -->
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="32"
-                      CornerRadius="0"
+                      CornerRadius="12"
                       GlassFrameThickness="0"
                       ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"
                       UseAeroCaptionButtons="False"/>
@@ -20,20 +20,38 @@
 
     <Grid>
         <!-- タイトルバー -->
-        <Border Background="{DynamicResource TitleBarBackgroundBrush}"
+        <Border CornerRadius="12" Background="{DynamicResource TitleBarBackgroundBrush}"
                Height="32"
                VerticalAlignment="Top">
-            <DockPanel>
-                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
-                    <Button Content="—" Width="40" Click="Minimize_Click" WindowChrome.IsHitTestVisibleInChrome="True"/>
-                    <Button Content="□" Width="40" Click="Maximize_Click" WindowChrome.IsHitTestVisibleInChrome="True"/>
-                    <Button Content="×" Width="40" Click="Close_Click" WindowChrome.IsHitTestVisibleInChrome="True"/>
+            <Grid Height="32" Background="{DynamicResource TitleBarBackgroundBrush}" x:Name="TitleBarGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- アプリケーションアイコン -->
+                <Image Width="16" Height="16" Margin="8,0"
+                       Source="{Binding Icon, RelativeSource={RelativeSource AncestorType=Window}}"
+                       VerticalAlignment="Center"/>
+
+                <!-- タイトル -->
+                <TextBlock Grid.Column="1"
+               Text="{Binding Title, RelativeSource={RelativeSource AncestorType=Window}}"
+               VerticalAlignment="Center"
+               Foreground="{DynamicResource TitleBarForegroundBrush}"
+               Margin="8,0"/>
+
+                <!-- ボタン群 -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Button Content="—" Width="40" Click="Minimize_Click"
+                WindowChrome.IsHitTestVisibleInChrome="True"/>
+                    <Button Content="□" Width="40" Click="Maximize_Click"
+                WindowChrome.IsHitTestVisibleInChrome="True"/>
+                    <Button Content="×" Width="40" Click="Close_Click"
+                WindowChrome.IsHitTestVisibleInChrome="True"/>
                 </StackPanel>
-                <TextBlock Text="ハイハイスクールアドベンチャー"
-                          Foreground="{DynamicResource TitleBarForegroundBrush}"
-                          VerticalAlignment="Center"
-                          Margin="8,0"/>
-            </DockPanel>
+            </Grid>
         </Border>
 
         <!-- コンテンツ -->
@@ -87,28 +105,34 @@
                     <!-- ログ表示（スクロール対応） -->
                     <ScrollViewer x:Name="ScrollArea" Grid.Row="4" VerticalScrollBarVisibility="Auto">
                         <TextBox x:Name="LogArea"
-                    TextWrapping="Wrap"
-                    AcceptsReturn="True"
-                    IsReadOnly="True"
-                    VerticalScrollBarVisibility="Auto"/>
+                                 TextWrapping="Wrap"
+                                 AcceptsReturn="True"
+                                 IsReadOnly="True"
+                                 BorderThickness="0"
+                                 VerticalScrollBarVisibility="Auto"/>
                     </ScrollViewer>
                 </Grid>
                 <!-- オーバーレイ -->
                 <Grid x:Name="Overlay"
-              Background="Black"
-              Opacity="1"
-              ClipToBounds="False"
-              Visibility="Collapsed">
+                      Background="Black"
+                      Opacity="1"
+                      ClipToBounds="False"
+                      Visibility="Collapsed">
+                    <Grid.Clip>
+                        <!-- Y=32 から下だけ描画 -->
+                        <RectangleGeometry Rect="0,0,320,450"/>
+                    </Grid.Clip>
+
                     <Canvas>
                         <Image x:Name="CreditsImage"
-                       Stretch="None"
-                       SnapsToDevicePixels="True"
-                       UseLayoutRounding="True"
-                       VerticalAlignment="Top">
-                            <Image.RenderTransform>
-                                <TranslateTransform x:Name="CreditsTransform"/>
-                            </Image.RenderTransform>
-                        </Image>
+                               Stretch="None"
+                               SnapsToDevicePixels="True"
+                               UseLayoutRounding="True"
+                               VerticalAlignment="Top">
+                                <Image.RenderTransform>
+                                    <TranslateTransform x:Name="CreditsTransform"/>
+                                </Image.RenderTransform>
+                            </Image>
                     </Canvas>
                 </Grid>
             </Grid>

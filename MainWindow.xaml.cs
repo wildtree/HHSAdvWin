@@ -136,6 +136,7 @@ look room
 
         private void Init(object sender, EventArgs e)
         {
+            this.Icon= IconHelper.GetAppIcon();
             canvas = new Canvas(BitmapArea);
 
             TitleScreen();
@@ -230,6 +231,7 @@ look room
                     EventHandler h = null;
                     h = (s, e) =>
                     {
+                        //TitleBarGrid.Visibility = Visibility.Visible;
                         zsystem.Map.Cursor = 1;
                         LogArea.Clear();
                         zsystem.Status = ZSystem.GameStatus.Play;
@@ -242,6 +244,7 @@ look room
                     System.Windows.Application.Current.MainWindow.PreviewKeyDown -= Application_PreviewKeyDown;
                     if (zsystem.Properties.Attrs.OpeningRoll)
                     {
+                        //TitleBarGrid.Visibility = Visibility.Collapsed;
                         ZRoll openingRoll = new ZRoll { Owner = this, Credits = opening };
                         openingRoll.Completed += h;
                         openingRoll.ShowCredits();
@@ -542,7 +545,14 @@ look room
                                             }
                                             if (n == 0)
                                             {
-                                                MessageBoxHelper.ShowCentered(this, "セーブデータが存在していません。", "情報", MessageBoxButton.OK, MessageBoxImage.Information);
+                                                ZMessageBox messageBox = new ZMessageBox
+                                                {
+                                                    Owner = this,
+                                                };
+                                                messageBox.TitleTextBlock.Text = "情報";
+                                                messageBox.textBox.Text = "セーブデータが存在していません。";
+                                                messageBox.ShowDialog();
+                                                //MessageBoxHelper.ShowCentered(this, "セーブデータが存在していません。", "情報", MessageBoxButton.OK, MessageBoxImage.Information);
                                                 break;
                                             }
                                         }
@@ -560,7 +570,15 @@ look room
                                         }
                                         break;
                                     case 2:
-                                        MessageBoxHelper.ShowCentered(this, user.getItemList(), "持物", MessageBoxButton.OK, MessageBoxImage.None);
+                                        //MessageBoxHelper.ShowCentered(this, user.getItemList(), "持物", MessageBoxButton.OK, MessageBoxImage.None);
+                                        ZMessageBox invBox = new ZMessageBox
+                                        {
+                                            Owner = this,
+                                        };
+                                        string items = user.getItemList();
+                                        invBox.TitleTextBlock.Text = "持物";
+                                        invBox.textBox.Text = string.IsNullOrEmpty(items) ? "持物はありません。" : items;
+                                        invBox.ShowDialog();
                                         break;
                                     case 3:
                                         dialog = new ZDialog("選択", zsystem.Messages.GetMessage(0xe9), new string[] { "黄", "赤", string.Empty }) { Owner = this };
@@ -602,9 +620,11 @@ look room
                                     case 3: // clear
                                         if (properties.Attrs.PlaySound)
                                             audio!.Play(0);
+                                        //TitleBarGrid.Visibility = Visibility.Collapsed;
                                         ZRoll endroll = new ZRoll { Owner = this, Credits = credits, TotalDuration = TimeSpan.FromSeconds(35) };
                                         endroll.Completed += (s, e) =>
                                         {
+                                            //TitleBarGrid.Visibility = Visibility.Visible;
                                             DrawScreen(true);
                                         };
                                         endroll.ShowCredits();

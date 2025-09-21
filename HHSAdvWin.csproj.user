@@ -10,6 +10,9 @@
     <Compile Update="ZDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ZMessageBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ZPreferences.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

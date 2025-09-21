@@ -6,7 +6,7 @@
     <Color x:Key="ForegroundColor">#FFFFFFFF</Color>
 
     <!-- Title bar -->
-    <SolidColorBrush x:Key="TitleBarBackgroundBrush" Color="#FF2B2B2B"/>
+    <SolidColorBrush x:Key="TitleBarBackgroundBrush" Color="#FF3F3F3F"/>
     <SolidColorBrush x:Key="TitleBarForegroundBrush" Color="#FFFFFFFF"/>
     <SolidColorBrush x:Key="TitleBarInactiveBackgroundBrush" Color="#FF252525"/>
     <SolidColorBrush x:Key="TitleBarInactiveForegroundBrush" Color="#FFB0B0B0"/>
@@ -17,6 +17,24 @@
     <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="#444444"/>
     <SolidColorBrush x:Key="ButtonForegroundBrush" Color="White"/>
     <SolidColorBrush x:Key="ButtonBorderBrush" Color="#888888"/>
+
+    <!-- メニューの色選択 -->
+    <SolidColorBrush x:Key="MenuBackgroundBrush" Color="#FF2B2B2B"/>
+    <SolidColorBrush x:Key="MenuForegroundBrush" Color="#FFc0C0C0"/>
+    <SolidColorBrush x:Key="MenuHighlightBrush" Color="#FF808080"/>
+    <SolidColorBrush x:Key="MenuHighlightTextBrush" Color="White"/>
+    
+    <!-- スクロールバー -->
+    <SolidColorBrush x:Key="ScrollBarBackgroundBrush" Color="#222"/>
+    <SolidColorBrush x:Key="ScrollBarForegroundBrush" Color="#CCC"/>
+    <SolidColorBrush x:Key="ScrollBarButtonBackgroundBrush" Color="#333"/>
+    <SolidColorBrush x:Key="ScrollBarButtonBorderBrush" Color="#555"/>
+    <SolidColorBrush x:Key="ScrollBarButtonArrowBrush" Color="#EEE"/>
+    <SolidColorBrush x:Key="ScrollBarPageBackgroundBrush" Color="#2A2A2A"/>
+    <SolidColorBrush x:Key="ScrollBarThumbBrush" Color="#555"/>
+    <SolidColorBrush x:Key="ScrollBarThumbBorderBrush" Color="#777"/>
+
+
 
     <!-- コントロールスタイル例 -->
     <Style TargetType="Window">
@@ -51,17 +69,83 @@
         <Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderBrush}" />
     </Style>
 
+    <!-- 上下の矢印ボタン -->
+    <Style x:Key="ScrollBarLineButtonStyle" TargetType="RepeatButton">
+        <Setter Property="Background" Value="{DynamicResource ScrollBarButtonBackgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ScrollBarButtonBorderBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ScrollBarButtonArrowBrush}"/>
+    </Style>
+
+    <!-- ページ領域（Thumb の上下の空き部分） -->
+    <Style x:Key="ScrollBarPageButtonStyle" TargetType="RepeatButton">
+        <Setter Property="Background" Value="{DynamicResource ScrollBarPageBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+
+    <!-- Thumb -->
+    <Style x:Key="ScrollBarThumbStyle" TargetType="Thumb">
+        <Setter Property="Background" Value="{DynamicResource ScrollBarThumbBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ScrollBarThumbBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+    <!-- ScrollBar -->
+    <Style TargetType="ScrollBar" BasedOn="{StaticResource {x:Type ScrollBar}}">
+        <Setter Property="Background" Value="{DynamicResource ScrollBarBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ScrollBarForegroundBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ScrollBar">
+                    <Grid Background="{TemplateBinding Background}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- 上ボタン -->
+                        <RepeatButton Grid.Row="0" Height="16"
+                                  Style="{StaticResource ScrollBarLineButtonStyle}"
+                                  Command="ScrollBar.LineUpCommand"/>
+
+                        <!-- トラック -->
+                        <Track Grid.Row="1" Name="PART_Track"
+                           IsDirectionReversed="true">
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton Style="{StaticResource ScrollBarPageButtonStyle}"
+                                          Command="ScrollBar.PageUpCommand"/>
+                            </Track.DecreaseRepeatButton>
+                            <Track.Thumb>
+                                <Thumb Style="{StaticResource ScrollBarThumbStyle}"/>
+                            </Track.Thumb>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton Style="{StaticResource ScrollBarPageButtonStyle}"
+                                          Command="ScrollBar.PageDownCommand"/>
+                            </Track.IncreaseRepeatButton>
+                        </Track>
+
+                        <!-- 下ボタン -->
+                        <RepeatButton Grid.Row="2" Height="16"
+                                  Style="{StaticResource ScrollBarLineButtonStyle}"
+                                  Command="ScrollBar.LineDownCommand"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
     <!-- Menu -->
     <Style TargetType="Menu" BasedOn="{StaticResource {x:Type Menu}}">
-        <Setter Property="Background" Value="{StaticResource BackgroundBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource MenuForegroundBrush}" />
     </Style>
 
     <!-- MenuItem -->
     <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
-        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource MenuForegroundBrush}" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Padding" Value="8,4" />
+        <Setter Property="Padding" Value="8,4"/>
+        <Setter Property="Height" Value="24"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -83,8 +167,8 @@
                                    AllowsTransparency="True"
                                    Focusable="False"
                                    PopupAnimation="Fade">
-                                <Border Background="{DynamicResource BackgroundBrush}"
-                                        BorderBrush="{DynamicResource ForegroundBrush}"
+                                <Border Background="{DynamicResource MenuBackgroundBrush}"
+                                        BorderBrush="{DynamicResource MenuForegroundBrush}"
                                         BorderThickness="1">
                                     <StackPanel IsItemsHost="True"
                                                 KeyboardNavigation.DirectionalNavigation="Cycle" />
@@ -105,8 +189,8 @@
         <Style.Triggers>
             <!-- ホバー時 -->
             <Trigger Property="IsHighlighted" Value="True">
-                <Setter Property="Background" Value="#333333" />
-                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Background" Value="{DynamicResource MenuHighlightBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource MenuHighlightTextBrush}" />
             </Trigger>
         </Style.Triggers>
     </Style>

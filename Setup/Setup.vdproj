@@ -577,7 +577,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:High High School Adventure for Windows"
         "ProductCode" = "8:{2AAD2F34-C9A6-4B6F-9356-4D90BA6C2747}"
-        "PackageCode" = "8:{A0EB1977-C20C-4825-A7EB-AC0E16D3DC5C}"
+        "PackageCode" = "8:{DE72B83A-8D24-4A8A-A3EE-18D64B8198CD}"
         "UpgradeCode" = "8:{CC416547-4DCC-4F24-8F14-055A419BCC08}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
