@@ -5,25 +5,74 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HHSAdvWin"
         mc:Ignorable="d"
-        Title="このゲームについて" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+        Title="このゲームについて" ResizeMode="NoResize" SizeToContent="WidthAndHeight"
+        Foreground="{DynamicResource ForegroundBrush}" Background="{DynamicResource BackgroundBrush}"
+        WindowStyle="None"
+        AllowsTransparency="False">
+
+    <!-- 行分割で厳密に上32px＝タイトルバー、下＝コンテンツ -->
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <!-- タイトルバー行 -->
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <!-- コンテンツ行 -->
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" VerticalAlignment="Top">
-            <Image x:Name="icon"  Height="64" Width="64" Margin="8,8,8,8" />
-        </StackPanel>
-        <ScrollViewer x:Name="scrollView" Grid.Row="0" Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <RichTextBox x:Name="textBox" Focusable="False" IsReadOnly="True" Width="600" />
-        </ScrollViewer>
-        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button x:Name="btnOkay" Content="了解" Width="80" Margin="5,5,5,5" IsDefault="True" Click="Button_Okay_Click"/>
-        </StackPanel>
 
+        <!-- タイトルバー -->
+        <Border Grid.Row="0"
+                Background="{DynamicResource TitleBarBackgroundBrush}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- ドラッグ領域（テキスト側） -->
+                <TextBlock Text="このゲームについて"
+                           VerticalAlignment="Center"
+                           Margin="8,0"
+                           Foreground="{DynamicResource TitleBarForegroundBrush}"
+                           MouseLeftButtonDown="TitleBar_DragArea_MouseLeftButtonDown"/>
+
+                <!-- 右側ボタン群 -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="—" Width="46" Click="Minimize_Click"
+                            WindowChrome.IsHitTestVisibleInChrome="True"
+                            Background="Transparent" BorderThickness="0"/>
+                    <Button Content="□" Width="46" Click="Maximize_Click"
+                            WindowChrome.IsHitTestVisibleInChrome="True"
+                            Background="Transparent" BorderThickness="0"/>
+                    <Button Content="×" Width="46" Click="Close_Click"
+                            WindowChrome.IsHitTestVisibleInChrome="True"
+                            Background="Transparent" BorderThickness="0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- コンテンツ（Marginで32を空けず、行で分ける） -->
+        <Grid Grid.Row="1" Background="{DynamicResource BackgroundBrush}">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" VerticalAlignment="Top">
+                    <Image x:Name="icon"  Height="64" Width="64" Margin="8,8,8,8" />
+                </StackPanel>
+                <ScrollViewer x:Name="scrollView" Grid.Row="0" Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <RichTextBox x:Name="textBox" Focusable="False" IsReadOnly="True" Width="600" />
+                </ScrollViewer>
+                <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="btnOkay" Content="了解" Width="80" Margin="5,5,5,5" IsDefault="True" Click="Button_Okay_Click"/>
+                </StackPanel>
+
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

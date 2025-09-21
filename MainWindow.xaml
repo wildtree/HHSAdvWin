@@ -6,44 +6,75 @@
         xmlns:local="clr-namespace:HHSAdvWin"
         FocusManager.FocusedElement="{Binding ElementName=InputTextBox}"
         mc:Ignorable="d"
-        Title="ハイハイスクールアドベンチャー" Height="450" Width="320" Closing="MainWindow_Closing">
-    <Grid ClipToBounds="False">
-        <Grid x:Name="MainContent">
-            <!-- 行の高さ定義 -->
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <!-- メニュー -->
-                <RowDefinition Height="240"/>
-                <!-- ビットマップ領域 -->
-                <RowDefinition Height="Auto"/>
-                <!-- コマンド入力 -->
-                <RowDefinition Height="Auto"/>
-                <!-- Hit ANy Key -->
-                <RowDefinition Height="*"/>
-                <!-- ログ -->
-            </Grid.RowDefinitions>
+        Title="ハイハイスクールアドベンチャー" Height="450" Width="320" Closing="MainWindow_Closing"
+        WindowStyle="None"
+        AllowsTransparency="False">
+    <!-- WindowChrome: OSへキャプション高さ等を通知 -->
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="32"
+                      CornerRadius="0"
+                      GlassFrameThickness="0"
+                      ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"
+                      UseAeroCaptionButtons="False"/>
+    </WindowChrome.WindowChrome>
 
-            <!-- メニューバー -->
-            <Menu Grid.Row="0">
-                <MenuItem Header="_File">
-                    <MenuItem Header="_Quit" Click="Menu_Quit_Clicked"/>
-                </MenuItem>
-                <MenuItem Header="_Tools">
-                    <MenuItem Header="Settings" Click="Settings_Click"/>
-                </MenuItem>
-                <MenuItem Header="_Help">
-                    <MenuItem Header="_About" Click="Help_About_Click"/>
-                </MenuItem>
-            </Menu>
+    <Grid>
+        <!-- タイトルバー -->
+        <Border Background="{DynamicResource TitleBarBackgroundBrush}"
+               Height="32"
+               VerticalAlignment="Top">
+            <DockPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                    <Button Content="—" Width="40" Click="Minimize_Click" WindowChrome.IsHitTestVisibleInChrome="True"/>
+                    <Button Content="□" Width="40" Click="Maximize_Click" WindowChrome.IsHitTestVisibleInChrome="True"/>
+                    <Button Content="×" Width="40" Click="Close_Click" WindowChrome.IsHitTestVisibleInChrome="True"/>
+                </StackPanel>
+                <TextBlock Text="ハイハイスクールアドベンチャー"
+                          Foreground="{DynamicResource TitleBarForegroundBrush}"
+                          VerticalAlignment="Center"
+                          Margin="8,0"/>
+            </DockPanel>
+        </Border>
 
-            <!-- ビットマップ表示領域 -->
-            <Border Grid.Row="1"
+        <!-- コンテンツ -->
+        <Grid Margin="0,32,0,0" Background="{DynamicResource BackgroundBrush}">
+            <Grid ClipToBounds="False">
+                <Grid x:Name="MainContent">
+                    <!-- 行の高さ定義 -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <!-- メニュー -->
+                        <RowDefinition Height="240"/>
+                        <!-- ビットマップ領域 -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- コマンド入力 -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- Hit ANy Key -->
+                        <RowDefinition Height="*"/>
+                        <!-- ログ -->
+                    </Grid.RowDefinitions>
+
+                    <!-- メニューバー -->
+                    <Menu Grid.Row="0">
+                        <MenuItem Header="_File">
+                            <MenuItem Header="_Quit" Click="Menu_Quit_Clicked"/>
+                        </MenuItem>
+                        <MenuItem Header="_Tools">
+                            <MenuItem Header="Settings" Click="Settings_Click"/>
+                        </MenuItem>
+                        <MenuItem Header="_Help">
+                            <MenuItem Header="_About" Click="Help_About_Click"/>
+                        </MenuItem>
+                    </Menu>
+
+                    <!-- ビットマップ表示領域 -->
+                    <Border Grid.Row="1"
                 BorderBrush="Gray" BorderThickness="1" Background="Black">
-                <Image x:Name="BitmapArea" Width="NaN"/>
-            </Border>
+                        <Image x:Name="BitmapArea" Width="NaN"/>
+                    </Border>
 
-            <!-- コマンド入力（1行） -->
-            <TextBox x:Name="InputTextBox" Grid.Row="2" Height="24" Margin="2"
+                    <!-- コマンド入力（1行） -->
+                    <TextBox x:Name="InputTextBox" Grid.Row="2" Height="24" Margin="2"
                 VerticalContentAlignment="Center"
                 local:Placeholder.Text="どうする?"
                 local:Placeholder.Foreground="LightGray"
@@ -51,35 +82,36 @@
                 local:Placeholder.Margin="8,4,0,0"
                 AcceptsReturn="False" KeyDown="InputTextBox_KeyDown" />
 
-            <TextBox x:Name="HitAnyKey" Grid.Row="3" TextWrapping="Wrap" Text="何かキーを押してください" Height="24" FontSize="14" HorizontalAlignment="Stretch" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" Background="Black" Focusable="False" IsReadOnly="True" HorizontalContentAlignment="Center"/>
+                    <TextBox x:Name="HitAnyKey" Grid.Row="3" TextWrapping="Wrap" Text="何かキーを押してください" Height="24" FontSize="14" HorizontalAlignment="Stretch" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" Background="Black" Focusable="False" IsReadOnly="True" HorizontalContentAlignment="Center"/>
 
-            <!-- ログ表示（スクロール対応） -->
-            <ScrollViewer x:Name="ScrollArea" Grid.Row="4" VerticalScrollBarVisibility="Auto">
-                <TextBox x:Name="LogArea"
+                    <!-- ログ表示（スクロール対応） -->
+                    <ScrollViewer x:Name="ScrollArea" Grid.Row="4" VerticalScrollBarVisibility="Auto">
+                        <TextBox x:Name="LogArea"
                     TextWrapping="Wrap"
                     AcceptsReturn="True"
                     IsReadOnly="True"
                     VerticalScrollBarVisibility="Auto"/>
-            </ScrollViewer>
-        </Grid>
-        <!-- オーバーレイ -->
-        <Grid x:Name="Overlay"
+                    </ScrollViewer>
+                </Grid>
+                <!-- オーバーレイ -->
+                <Grid x:Name="Overlay"
               Background="Black"
               Opacity="1"
               ClipToBounds="False"
               Visibility="Collapsed">
-            <Canvas>
-                <Image x:Name="CreditsImage"
+                    <Canvas>
+                        <Image x:Name="CreditsImage"
                        Stretch="None"
                        SnapsToDevicePixels="True"
                        UseLayoutRounding="True"
                        VerticalAlignment="Top">
-                    <Image.RenderTransform>
-                        <TranslateTransform x:Name="CreditsTransform"/>
-                    </Image.RenderTransform>
-                </Image>
-            </Canvas>
+                            <Image.RenderTransform>
+                                <TranslateTransform x:Name="CreditsTransform"/>
+                            </Image.RenderTransform>
+                        </Image>
+                    </Canvas>
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
-
 </Window>

@@ -8,10 +8,27 @@
     <UseWPF>true</UseWPF>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <ApplicationIcon>isako.ico</ApplicationIcon>
+    <Authors>Hiroyuki Araki</Authors>
+    <Company>WildTree.JP</Company>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <FileVersion>1.1.0.0</FileVersion>
+	  <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <Content Include="isako.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="AppData\Local\HHSAdvWin\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -11,6 +11,7 @@ using System.IO;
 
 namespace HHSAdvWin
 {
+    public enum ThemeType { Light, Dark, System }
     public class ZProperties
     {
         public class Attributes
@@ -18,6 +19,7 @@ namespace HHSAdvWin
             public string FontPath { get; set; } = @"C:\Windows\Fonts\YuGothR.ttc";
             public bool OpeningRoll { get; set; } = true;
             public bool PlaySound { get; set; } = true;
+            public ThemeType ThemeMode { get; set; } = ThemeType.Light;
         }
 
         private Attributes attributes = new Attributes();

@@ -31,6 +31,7 @@ namespace HHSAdvWin
         {
             InitializeComponent();
             Title = title;
+            TitleTextBlock.Text = Title;
             Message = message;
             Labels = labels;
             Loaded += ZDialog_Loaded;
@@ -96,5 +97,22 @@ namespace HHSAdvWin
             DialogResult = true;
         }
 
+        private void Minimize_Click(object sender, RoutedEventArgs e)
+            => WindowState = WindowState.Minimized;
+
+        private void Maximize_Click(object sender, RoutedEventArgs e)
+            => WindowState = (WindowState == WindowState.Maximized) ? WindowState.Normal : WindowState.Maximized;
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+            => Close();
+
+        // タイトルバーのドラッグ移動用イベントハンドラを追加
+        private void TitleBar_DragArea_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
     }
 }

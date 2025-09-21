@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:HHSAdvWin"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- デフォルトはライトテーマ -->
+                <ResourceDictionary Source="themes/LightTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <local:EnumToBooleanConverter x:Key="EnumToBooleanConverter"/>
+        </ResourceDictionary>
     </Application.Resources>
+
 </Application>

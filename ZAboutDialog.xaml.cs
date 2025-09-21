@@ -37,7 +37,7 @@ namespace HHSAdvWin
                     return @"<FlowDocument xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'>
 <Paragraph>
 <Span FontSize='16' FontWeight='Bold'>High High School Adventure</Span><LineBreak/>
-<Bold>Version 1.0</Bold>
+<Bold>Version 1.1</Bold>
 </Paragraph>
 <Paragraph>
 PalmOS version: hiro © 2002-2004<LineBreak/>
@@ -184,6 +184,23 @@ Furniture KASHIWAGI<LineBreak/>
         private void Button_Okay_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
+        }
+
+        private void Minimize_Click(object sender, RoutedEventArgs e)
+            => WindowState = WindowState.Minimized;
+
+        private void Maximize_Click(object sender, RoutedEventArgs e)
+            => WindowState = (WindowState == WindowState.Maximized) ? WindowState.Normal : WindowState.Maximized;
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+            => Close();
+        // タイトルバーのドラッグ移動用イベントハンドラを追加
+        private void TitleBar_DragArea_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
         }
     }
 }

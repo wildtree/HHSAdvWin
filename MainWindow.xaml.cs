@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using Microsoft.Win32;
+using System.Data;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -131,6 +132,7 @@ look room
             InitializeComponent();
             Loaded += Init;
         }
+
 
         private void Init(object sender, EventArgs e)
         {
@@ -672,6 +674,15 @@ look room
             var dialog = new ZAboutDialog() { Owner = this };
             dialog.ShowDialog();
         }
+
+        private void Minimize_Click(object sender, RoutedEventArgs e)
+            => WindowState = WindowState.Minimized;
+
+        private void Maximize_Click(object sender, RoutedEventArgs e)
+            => WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+            => Close();
     }
 
     public static class MessageBoxHelper

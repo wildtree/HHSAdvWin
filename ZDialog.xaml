@@ -5,15 +5,65 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HHSAdvWin"
         mc:Ignorable="d"
-        Title="ZDialog" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
-    <StackPanel>
-        <TextBox x:Name="textBox" TextWrapping="Wrap" Text="TextBox" FontSize="16" Margin="8,8,8,8" HorizontalAlignment="Center" BorderThickness="0 "/>
-        <RadioButton x:Name="Option1" Content="RadioButton" GroupName="Selection" Tag="1" Margin="8,4,8,4"/>
-        <RadioButton x:Name="Option2" Content="RadioButton" GroupName="Selection" Tag="2" Margin="8,4,8,4"/>
-        <RadioButton x:Name="Option3" Content="RadioButton" GroupName="Selection" Tag="3" Margin="8,4,8,4"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="Okay" Content="了解" Click="Okay_Clicked" Width="80" IsDefault="True" Margin="5,5,5,5"/>
-            <Button x:Name="Cancel" Content="取消" Width="80" IsCancel="True" IsDefault="True" Margin="5,5,5,5"/>
-        </StackPanel>
-    </StackPanel>
+        Title="ZDialog" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
+        Foreground="{DynamicResource ForegroundBrush}" Background="{DynamicResource BackgroundBrush}"
+        WindowStyle="None"
+        AllowsTransparency="False">
+
+    <!-- 行分割で厳密に上32px＝タイトルバー、下＝コンテンツ -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <!-- タイトルバー行 -->
+            <RowDefinition Height="*"/>
+            <!-- コンテンツ行 -->
+        </Grid.RowDefinitions>
+
+        <!-- タイトルバー -->
+        <Border Grid.Row="0"
+                Background="{DynamicResource TitleBarBackgroundBrush}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- ドラッグ領域（テキスト側） -->
+                <TextBlock Text="ZDialog"
+                           x:Name="TitleTextBlock"
+                           VerticalAlignment="Center"
+                           Margin="8,0"
+                           Foreground="{DynamicResource TitleBarForegroundBrush}"
+                           MouseLeftButtonDown="TitleBar_DragArea_MouseLeftButtonDown"/>
+
+                <!-- 右側ボタン群 -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="—" Width="46" Click="Minimize_Click"
+                            WindowChrome.IsHitTestVisibleInChrome="True"
+                            Background="Transparent" BorderThickness="0"/>
+                    <Button Content="□" Width="46" Click="Maximize_Click"
+                            WindowChrome.IsHitTestVisibleInChrome="True"
+                            Background="Transparent" BorderThickness="0"/>
+                    <Button Content="×" Width="46" Click="Close_Click"
+                            WindowChrome.IsHitTestVisibleInChrome="True"
+                            Background="Transparent" BorderThickness="0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- コンテンツ（Marginで32を空けず、行で分ける） -->
+        <Grid Grid.Row="1" Background="{DynamicResource BackgroundBrush}">
+
+            <StackPanel Background="{DynamicResource BackgroundBrush}">
+                <TextBox x:Name="textBox" TextWrapping="Wrap" Text="TextBox" FontSize="16" Margin="8,8,8,8" HorizontalAlignment="Center" BorderThickness="0 "/>
+                <RadioButton x:Name="Option1" Content="RadioButton" GroupName="Selection" Tag="1" Margin="8,4,8,4"/>
+                <RadioButton x:Name="Option2" Content="RadioButton" GroupName="Selection" Tag="2" Margin="8,4,8,4"/>
+                <RadioButton x:Name="Option3" Content="RadioButton" GroupName="Selection" Tag="3" Margin="8,4,8,4"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="Okay" Content="了解" Click="Okay_Clicked" Width="80" IsDefault="True" Margin="5,5,5,5"/>
+                    <Button x:Name="Cancel" Content="取消" Width="80" IsCancel="True" IsDefault="True" Margin="5,5,5,5"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
 </Window>
