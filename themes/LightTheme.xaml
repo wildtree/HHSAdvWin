@@ -83,8 +83,8 @@
                                    AllowsTransparency="True"
                                    Focusable="False"
                                    PopupAnimation="Fade">
-                                <Border Background="{StaticResource BackgroundBrush}"
-                                        BorderBrush="{StaticResource ForegroundBrush}"
+                                <Border Background="{DynamicResource BackgroundBrush}"
+                                        BorderBrush="{DynamicResource ForegroundBrush}"
                                         BorderThickness="1">
                                     <StackPanel IsItemsHost="True"
                                                 KeyboardNavigation.DirectionalNavigation="Cycle" />

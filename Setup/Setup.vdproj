@@ -45,6 +45,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_4F0D31EFCC6B4A85B38C5CCF44754310"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_54C1659002914C4D9C180C836BC89BBC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -70,6 +76,12 @@
         "Entry"
         {
         "MsmKey" = "8:_6D3836BBD428445381D0B07AEC2A42BB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_701CC2EDEF3A477AA12B7AB7D7841DB0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -115,6 +127,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -131,6 +151,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -242,6 +278,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4F0D31EFCC6B4A85B38C5CCF44754310"
+            {
+            "SourcePath" = "8:..\\themes\\DarkTheme.xaml"
+            "TargetName" = "8:DarkTheme.xaml"
+            "Tag" = "8:"
+            "Folder" = "8:_8EA84EA8EA384BE9A1D57F5085EA27F2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_54C1659002914C4D9C180C836BC89BBC"
             {
             "SourcePath" = "8:..\\AppData\\Local\\HHSAdvWin\\icon.png"
@@ -328,6 +384,26 @@
             "TargetName" = "8:highschool.mp3"
             "Tag" = "8:"
             "Folder" = "8:_86AB016EE04C4DFF943D120C2CED064D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_701CC2EDEF3A477AA12B7AB7D7841DB0"
+            {
+            "SourcePath" = "8:..\\themes\\LightTheme.xaml"
+            "TargetName" = "8:LightTheme.xaml"
+            "Tag" = "8:"
+            "Folder" = "8:_8EA84EA8EA384BE9A1D57F5085EA27F2"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -471,6 +547,17 @@
                         {
                         }
                     }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_8EA84EA8EA384BE9A1D57F5085EA27F2"
+                    {
+                    "Name" = "8:themes"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_FDD215976EE24209AE5BC31555C0C49B"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
         }
@@ -489,15 +576,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:High High School Adventure for Windows"
-        "ProductCode" = "8:{F2AC68B1-0587-404B-B8E2-A494098EA678}"
-        "PackageCode" = "8:{9767E324-BF69-40DF-A391-F0A7A0E81344}"
+        "ProductCode" = "8:{2AAD2F34-C9A6-4B6F-9356-4D90BA6C2747}"
+        "PackageCode" = "8:{A0EB1977-C20C-4825-A7EB-AC0E16D3DC5C}"
         "UpgradeCode" = "8:{CC416547-4DCC-4F24-8F14-055A419BCC08}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.1.0"
         "Manufacturer" = "8:WildTree JP"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
