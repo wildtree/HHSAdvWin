@@ -7,7 +7,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <!-- デフォルトはライトテーマ -->
-                <ResourceDictionary Source="themes/LightTheme.xaml"/>
+                <ResourceDictionary Source="data/themes/LightTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <local:EnumToBooleanConverter x:Key="EnumToBooleanConverter"/>
         </ResourceDictionary>

@@ -33,6 +33,7 @@ namespace HHSAdvWin
         public ZProperties()
         {
         }
+
         public bool Load(string fileName)
         {
             if (!File.Exists(fileName)) return false;

@@ -4,16 +4,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
+using static HHSAdvWin.ZProperties;
 
 namespace HHSAdvWin
 {
     internal class ZSystem
     {
-        public enum GameStatus {  Title = 0, Play = 1, GameOver = 2, }
+        public enum GameStatus { Title = 0, Play = 1, GameOver = 2, }
         public GameStatus Status { get; set; } = GameStatus.Title;
 
         private static ZSystem? instance = null;
@@ -26,6 +28,11 @@ namespace HHSAdvWin
         private ZAudio? audio = null;
         private ZProperties? properties = null;
 
+        private class VersionAttributes
+        {
+            public int version { get; set; } = 0;
+        }
+        private VersionAttributes version = new VersionAttributes();
         public ZMap Map
         {
             get
@@ -72,15 +79,16 @@ namespace HHSAdvWin
                 return properties!;
             }
         }
-        public static ZSystem Instance { 
-            get 
+        public static ZSystem Instance
+        {
+            get
             {
                 if (instance == null)
                 {
                     instance = new ZSystem();
                 }
-                return instance; 
-            } 
+                return instance;
+            }
         }
 
         private bool darkMode = false;
@@ -90,7 +98,7 @@ namespace HHSAdvWin
             set
             {
                 darkMode = value;
-                string themePath = value ? "themes/DarkTheme.xaml" : "themes/LightTheme.xaml";
+                string themePath = value ? "data/themes/DarkTheme.xaml" : "data/themes/LightTheme.xaml";
                 var uri = new Uri(themePath, UriKind.Relative);
                 ResourceDictionary themeDict = new ResourceDictionary() { Source = uri };
 
@@ -120,17 +128,8 @@ namespace HHSAdvWin
         private ZSystem()
         {
             dataFolder = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "HHSAdvWin");
-            if (!Directory.Exists(dataFolder))
-            {
-                Directory.CreateDirectory(dataFolder);
-                string sourceFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data");
-                foreach (var srcPath in Directory.GetFiles(sourceFolder))
-                {
-                    string fileName = Path.GetFileName(srcPath);
-                    string dstPath = System.IO.Path.Combine(dataFolder, fileName);
-                    File.Copy(srcPath, dstPath, true);
-                }
-            }
+            string srcDir = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data");
+            CopyData(srcDir);
             map = new ZMap(System.IO.Path.Combine(dataFolder, "map.dat"));
             rules = new ZRules(System.IO.Path.Combine(dataFolder, "rule.dat"));
             dict = new ZWords(System.IO.Path.Combine(dataFolder, "highds.com"));
@@ -156,6 +155,56 @@ namespace HHSAdvWin
         public void SavePreferences()
         {
             Properties.Save(System.IO.Path.Combine(dataFolder, "HHSAdvWin.json"));
+        }
+
+        private int GetVersion(string dirName)
+        {
+            string fileName = System.IO.Path.Combine(dirName, "version.json");
+            if (!File.Exists(fileName)) return 0;
+            string jsonString = File.ReadAllText(fileName);
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                return 0;
+            }
+            var deserializedAttributes = JsonSerializer.Deserialize<VersionAttributes>(jsonString);
+            if (deserializedAttributes == null)
+            {
+                return 0;
+            }
+            version = deserializedAttributes;
+            return version.version;
+        }
+
+        private bool CopyData(string srcDir)
+        {
+            if (!Directory.Exists(srcDir)) return false;
+            if (!Directory.Exists(dataFolder)) Directory.CreateDirectory(dataFolder);
+            int srcVer = GetVersion(srcDir);
+            int dstVer = GetVersion(dataFolder);
+            if (srcVer > dstVer)
+            {
+                return CopyRecursive(srcDir, dataFolder);
+            }
+            return true;
+        }
+
+        private bool CopyRecursive(string srcDir, string dstDir)
+        {
+            if (!Directory.Exists(srcDir)) return false;
+            if (!Directory.Exists(dstDir)) Directory.CreateDirectory(dstDir);
+            foreach (var srcPath in Directory.GetFiles(srcDir))
+            {
+                string fileName = Path.GetFileName(srcPath);
+                string dstPath = System.IO.Path.Combine(dstDir, fileName);
+                File.Copy(srcPath, dstPath, true);
+            }
+            foreach (var subDir in Directory.GetDirectories(srcDir))
+            {
+                string dirName = Path.GetFileName(subDir);
+                string dstSubDir = System.IO.Path.Combine(dstDir, dirName);
+                CopyRecursive(subDir, dstSubDir);
+            }
+            return true;
         }
     }
 }

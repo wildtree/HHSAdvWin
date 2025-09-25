@@ -24,15 +24,15 @@
     <PackageReference Include="System.Drawing.Common" Version="9.0.9" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="AppData\Local\HHSAdvWin\icon.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Update="README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<!-- data 以下のすべてのファイルを対象にする -->
+		<Content Include="data\**\*.*">
+			<!-- 出力先にコピーするルール -->
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<!-- フォルダ構造を保持する -->
+			<Link>data\%(RecursiveDir)%(Filename)%(Extension)</Link>
+		</Content>
+	</ItemGroup>
+
 
 </Project>
