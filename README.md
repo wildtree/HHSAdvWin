@@ -7,7 +7,23 @@
 WPFアプリケーションなので、多分、Visual Studio 2022 Community Editionなどが必要じゃないかと思います。
 わたしは、Visual Studio 2022 Commmunity Editionで開発しました。
 
-AppData\Local\HHSAdvWin の中身を $env:LOCALAPPDATA\HHSAdvWinにコピーして、ビルドしてできた HHSAdvWin.exeを起動してください。
+~~AppData\Local\HHSAdvWin の中身を $env:LOCALAPPDATA\HHSAdvWinにコピーして、ビルドしてできた HHSAdvWin.exeを起動してください。~~
+
+データは自動的にデータフォルダにコピーされて開始されます。
+手動で何かする必要はありません。
+
+## テーマ
+
+ダークとライトのテーマに対応しています。
+システム設定に従うようにもできますが、いずれの場合にもテーマファイルを参照します。
+
+テーマファイルはプログラムディレクトリ内にありますが、ユーザのデータディレクトリにもあります。
+
+''themes/LightTheme.xaml''と''themes/DarkTheme.xaml''がそれで、これを変更することで、好みの外観にカスタマイズすることもできます。
+
+もちろん、正しく記述しないと画面が壊れてしまいます。
+そんなときは、データフォルダからテーマファイルを削除すると、プログラムディレクトリ内のものを使うので、画面がもとに戻ります。
+
 
 
 
