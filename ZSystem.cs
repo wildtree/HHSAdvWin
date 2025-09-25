@@ -100,7 +100,7 @@ namespace HHSAdvWin
                 darkMode = value;
                 string themePath = value ? "data/themes/DarkTheme.xaml" : "data/themes/LightTheme.xaml";
                 var uri = new Uri(themePath, UriKind.Relative);
-                string userThemePath = value ? System.IO.Path.Combine(dataFolder, "themes/DarkTheme.xaml") :  System.IO.Path.Combine(dataFolder, "themes/LightTheme.xaml");
+                string userThemePath = value ? System.IO.Path.Combine(dataFolder, "themes/UserDarkTheme.xaml") :  System.IO.Path.Combine(dataFolder, "themes/UserLightTheme.xaml");
                 if (File.Exists(userThemePath))
                 {
                     uri = new Uri(userThemePath, UriKind.Absolute);
@@ -151,6 +151,10 @@ namespace HHSAdvWin
             DarkMode = dm;
             Status = GameStatus.Title;
             ZUserData.Instance.load(System.IO.Path.Combine(dataFolder, "data.dat"));
+            if (Application.Current.MainWindow is MainWindow mainWindow)
+            {
+                mainWindow.LogFontSize = Properties.Attrs.FontSize;
+            }
             map.Cursor = 76;
         }
         public void Quit()

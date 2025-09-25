@@ -20,6 +20,7 @@ namespace HHSAdvWin
             public bool OpeningRoll { get; set; } = true;
             public bool PlaySound { get; set; } = true;
             public ThemeType ThemeMode { get; set; } = ThemeType.Light;
+            public int FontSize { get; set; } = 12;
         }
 
         private Attributes attributes = new Attributes();

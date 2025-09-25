@@ -60,8 +60,38 @@
                     </StackPanel>
                 </GroupBox>
 
+                <StackPanel Margin="20">
 
-                <StackPanel Orientation="Horizontal">
+                    <!-- フォントサイズ選択ボタン群 -->
+                    <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="フォントサイズ" Foreground="{DynamicResource ForegroundBrush}" Background="{DynamicResource BackgroundBrush}"/>
+
+                    <!-- フォントサイズ選択ボタン群 -->
+                    <UniformGrid Rows="1" Columns="4" HorizontalAlignment="Center">
+                        <RadioButton x:Name="FontSizeBtn12" Content="Aあ"
+                         GroupName="FontSizeGroup"
+                         FontSize="12"
+                         Style="{StaticResource {x:Type ToggleButton}}"
+                         Checked="FontSize_Checked"/>
+                        <RadioButton x:Name="FontSizeBtn16" Content="Aあ"
+                         GroupName="FontSizeGroup"
+                         FontSize="16"
+                         Style="{StaticResource {x:Type ToggleButton}}"
+                         Checked="FontSize_Checked" Margin="5,0"/>
+                        <RadioButton x:Name="FontSizeBtn20" Content="Aあ"
+                         GroupName="FontSizeGroup"
+                         FontSize="20"
+                         Style="{StaticResource {x:Type ToggleButton}}"
+                         Checked="FontSize_Checked" Margin="5,0"/>
+                        <RadioButton x:Name="FontSizeBtn24" Content="Aあ"
+                         GroupName="FontSizeGroup"
+                         FontSize="24"
+                         Style="{StaticResource {x:Type ToggleButton}}"
+                         Checked="FontSize_Checked" Margin="5,0"/>
+                    </UniformGrid>
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button x:Name="btnOkay" Content="設定" Margin="5,5,5,5" Width="80" IsDefault="True" Click="Okay_Click"/>
                     <Button x:Name="btnCancel" Content="取消" Margin="5,5,5,5" Width="80" IsCancel="True" IsDefault="True"/>
                 </StackPanel>

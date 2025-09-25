@@ -17,7 +17,10 @@
     <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="#dddddd"/>
     <SolidColorBrush x:Key="ButtonForegroundBrush" Color="Black"/>
     <SolidColorBrush x:Key="ButtonBorderBrush" Color="#1382da"/>
-
+    <SolidColorBrush x:Key="ButtonHoverBackgroundBrush" Color="#c0ddeb"/>
+    <SolidColorBrush x:Key="ButtonHoverForegroundBrush" Color="White"/>
+    <SolidColorBrush x:Key="ButtonPressedBackgroundBrush" Color="#1382da"/>
+    <SolidColorBrush x:Key="ButtonPressedForegroundBrush" Color="White"/>
     <!-- メニューの色選択 -->
     <SolidColorBrush x:Key="MenuBackgroundBrush" Color="#FFF3F3F3"/>
     <SolidColorBrush x:Key="MenuForegroundBrush" Color="#FF111111"/>
@@ -74,6 +77,40 @@
         <Setter Property="Background" Value="{DynamicResource ButtonBackgroundBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource ButtonForegroundBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderBrush}" />
+    </Style>
+    
+    <!-- ToggleButtons  -->
+    <Style TargetType="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
+        <Setter Property="Background" Value="{DynamicResource ButtonBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource ButtonForegroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border x:Name="border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!-- 通常 -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ButtonHoverBackgroundBrush}"/>
+                        </Trigger>
+                        <!-- 押された状態 -->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ButtonPressedBackgroundBrush}"/>
+                        </Trigger>
+                        <!-- 選択状態 -->
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ButtonPressedBackgroundBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!-- 上下の矢印ボタン -->

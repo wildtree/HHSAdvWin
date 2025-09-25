@@ -145,6 +145,16 @@ look room
             AppMainWindow.InvalidateVisual();
 
         }
+        private int logFontSize = 12;
+        public int LogFontSize
+        {
+            get { return logFontSize; }
+            set
+            {
+                LogArea.FontSize = value;
+                logFontSize = value;
+            }
+        }
 
         private void DrawScreen(bool drawMessage = true)
         {

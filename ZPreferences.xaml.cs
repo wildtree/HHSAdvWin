@@ -36,6 +36,24 @@ namespace HHSAdvWin
         {
             InitializeComponent();
             DataContext = Settings;
+            switch (Settings.FontSize)
+            {
+                case 12:
+                    FontSizeBtn12.IsChecked = true;
+                    break;
+                case 16:
+                    FontSizeBtn16.IsChecked = true;
+                    break;
+                case 20:
+                    FontSizeBtn20.IsChecked = true;
+                    break;
+                case 24:
+                    FontSizeBtn24.IsChecked = true;
+                    break;
+                default:
+                    FontSizeBtn12.IsChecked = true;
+                    break;
+            }
         }
 
         private void Okay_Click(object sender, RoutedEventArgs e)
@@ -48,6 +66,7 @@ namespace HHSAdvWin
                 
             }
             */
+            ZSystem.Instance.SavePreferences();
             DialogResult = true;
         }
 
@@ -76,5 +95,22 @@ namespace HHSAdvWin
 
         private void Close_Click(object sender, RoutedEventArgs e)
             => Close();
+
+        private void FontSize_Checked(object sender, RoutedEventArgs e)
+        {
+            if (sender is RadioButton rb && rb.FontSize > 0)
+            { 
+                // MainWindowのインスタンスを取得してLogFontSizeを設定
+                if (Application.Current.MainWindow is MainWindow mainWindow)
+                {
+                    var attrs = DataContext as Attributes;
+                    if (attrs != null)
+                    {
+                        attrs.FontSize = (int)rb.FontSize;
+                    }
+                    mainWindow.LogFontSize = (int)rb.FontSize;
+                }
+            }
+        }
     }
 }
