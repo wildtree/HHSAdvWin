@@ -19,7 +19,10 @@ WPFアプリケーションなので、多分、Visual Studio 2022 Community Edi
 
 テーマファイルはプログラムディレクトリ内にありますが、ユーザのデータディレクトリにもあります。
 
-''themes/LightTheme.xaml''と''themes/DarkTheme.xaml''がそれで、これを変更することで、好みの外観にカスタマイズすることもできます。
+''themes/LightTheme.xaml''と''themes/DarkTheme.xaml''がそれで、これをUserLightTheme.xaml, UserDarkTheme.xaml にそれぞれ変更することで、好みの外観にカスタマイズすることもできます。
+
+ダーク、ライトどちらかだけを変更するのでも構いません。
+UserLightTheme.xamlまたはUserDarkTheme.xamlがなければ、プログラムディレクトリのものを使用します。
 
 もちろん、正しく記述しないと画面が壊れてしまいます。
 そんなときは、データフォルダからテーマファイルを削除すると、プログラムディレクトリ内のものを使うので、画面がもとに戻ります。
