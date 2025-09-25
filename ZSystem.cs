@@ -100,6 +100,11 @@ namespace HHSAdvWin
                 darkMode = value;
                 string themePath = value ? "data/themes/DarkTheme.xaml" : "data/themes/LightTheme.xaml";
                 var uri = new Uri(themePath, UriKind.Relative);
+                string userThemePath = value ? System.IO.Path.Combine(dataFolder, "themes/DarkTheme.xaml") :  System.IO.Path.Combine(dataFolder, "themes/LightTheme.xaml");
+                if (File.Exists(userThemePath))
+                {
+                    uri = new Uri(userThemePath, UriKind.Absolute);
+                }
                 ResourceDictionary themeDict = new ResourceDictionary() { Source = uri };
 
                 Application.Current.Resources.MergedDictionaries.Clear();
