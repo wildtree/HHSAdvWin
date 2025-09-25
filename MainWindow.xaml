@@ -73,15 +73,15 @@
                     </Grid.RowDefinitions>
 
                     <!-- メニューバー -->
-                    <Menu Grid.Row="0">
-                        <MenuItem Header="_File">
-                            <MenuItem Header="_Quit" Click="Menu_Quit_Clicked"/>
+                    <Menu Grid.Row="0" Background="{DynamicResource MenuBackgroundBrush}">
+                        <MenuItem Header="_File" Style="{StaticResource TopLevelMenuItemStyle}">
+                            <MenuItem Header="_Quit" Style="{StaticResource SubMenuItemStyle}" Click="Menu_Quit_Clicked"/>
                         </MenuItem>
-                        <MenuItem Header="_Tools">
-                            <MenuItem Header="Settings" Click="Settings_Click"/>
+                        <MenuItem Header="_Tools" Style="{StaticResource TopLevelMenuItemStyle}">
+                            <MenuItem Header="Settings" Style="{StaticResource SubMenuItemStyle}" Click="Settings_Click"/>
                         </MenuItem>
-                        <MenuItem Header="_Help">
-                            <MenuItem Header="_About" Click="Help_About_Click"/>
+                        <MenuItem Header="_Help" Style="{StaticResource TopLevelMenuItemStyle}">
+                            <MenuItem Header="_About" Style="{StaticResource SubMenuItemStyle}" Click="Help_About_Click"/>
                         </MenuItem>
                     </Menu>
 

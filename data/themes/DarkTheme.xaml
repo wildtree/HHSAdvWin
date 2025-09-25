@@ -22,10 +22,11 @@
 
     <!-- メニューの色選択 -->
     <SolidColorBrush x:Key="MenuBackgroundBrush" Color="#FF2B2B2B"/>
-    <SolidColorBrush x:Key="MenuForegroundBrush" Color="#FFc0C0C0"/>
+    <SolidColorBrush x:Key="MenuForegroundBrush" Color="#FFC0C0C0"/>
     <SolidColorBrush x:Key="MenuHighlightBrush" Color="#FF808080"/>
     <SolidColorBrush x:Key="MenuHighlightTextBrush" Color="White"/>
-    
+    <SolidColorBrush x:Key="MenuBorderBrush" Color="#FF444444" />
+
     <!-- スクロールバー -->
     <SolidColorBrush x:Key="ScrollBarBackgroundBrush" Color="#222"/>
     <SolidColorBrush x:Key="ScrollBarForegroundBrush" Color="#CCC"/>
@@ -105,6 +106,41 @@
         </Setter>
     </Style>
 
+    <!-- スライドスイッチ風 ToggleButton スタイル -->
+    <Style x:Key="SlideSwitchStyle" TargetType="ToggleButton">
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid>
+                        <!-- 背景 -->
+                        <Border x:Name="SwitchTrack"
+                                CornerRadius="10"
+                                Background="{DynamicResource ButtonBorderBrush}"
+                                Height="20" Width="40"/>
+                        <!-- ノブ -->
+                        <Ellipse x:Name="SwitchThumb"
+                                 Fill="{DynamicResource ButtonBackgroundBrush}"
+                                 Width="18" Height="18"
+                                 Margin="1"
+                                 HorizontalAlignment="Left"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="SwitchTrack" Property="Background" Value="{DynamicResource ButtonPressedBackgroundBrush}"/>
+                            <Setter TargetName="SwitchThumb" Property="HorizontalAlignment" Value="Right"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="SwitchTrack" Property="Opacity" Value="0.5"/>
+                            <Setter TargetName="SwitchThumb" Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- 上下の矢印ボタン -->
     <Style x:Key="ScrollBarLineButtonStyle" TargetType="RepeatButton">
         <Setter Property="Background" Value="{DynamicResource ScrollBarButtonBackgroundBrush}"/>
@@ -177,58 +213,105 @@
     </Style>
 
     <!-- MenuItem -->
-    <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
-        <Setter Property="Foreground" Value="{DynamicResource MenuForegroundBrush}" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Padding" Value="8,4"/>
-        <Setter Property="Height" Value="24"/>
-
+    <!-- トップレベル MenuItem 用 -->
+    <Style x:Key="TopLevelMenuItemStyle" TargetType="MenuItem">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="MenuItem">
-                    <Border Background="{TemplateBinding Background}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="0"
+                            Padding="8,4">
                         <Grid>
-                            <!-- メニューのヘッダー部分 -->
                             <ContentPresenter ContentSource="Header"
-                                              Margin="{TemplateBinding Padding}"
                                               RecognizesAccessKey="True"
                                               VerticalAlignment="Center"
-                                              HorizontalAlignment="Left" />
-                            <!-- ↑ ForegroundプロパティはContentPresenterには存在しないため削除 -->
-
-                            <!-- サブメニュー -->
-                            <Popup Name="SubMenuPopup"
+                                              HorizontalAlignment="Center"/>
+                            <Popup x:Name="PART_Popup"
                                    Placement="Bottom"
                                    IsOpen="{TemplateBinding IsSubmenuOpen}"
                                    AllowsTransparency="True"
                                    Focusable="False"
                                    PopupAnimation="Fade">
                                 <Border Background="{DynamicResource MenuBackgroundBrush}"
-                                        BorderBrush="{DynamicResource MenuForegroundBrush}"
+                                        BorderBrush="{DynamicResource MenuBorderBrush}"
                                         BorderThickness="1">
                                     <StackPanel IsItemsHost="True"
-                                                KeyboardNavigation.DirectionalNavigation="Cycle" />
+                                                KeyboardNavigation.DirectionalNavigation="Cycle"/>
                                 </Border>
                             </Popup>
                         </Grid>
                     </Border>
-
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsSubmenuOpen" Value="True">
-                            <Setter TargetName="SubMenuPopup" Property="IsOpen" Value="True"/>
+                        <Trigger Property="IsHighlighted" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource MenuHighlightBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource MenuHighlightTextBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
 
-        <Style.Triggers>
-            <!-- ホバー時 -->
-            <Trigger Property="IsHighlighted" Value="True">
-                <Setter Property="Background" Value="{DynamicResource MenuHighlightBrush}" />
-                <Setter Property="Foreground" Value="{DynamicResource MenuHighlightTextBrush}" />
-            </Trigger>
-        </Style.Triggers>
+    <!-- サブメニュー MenuItem 用 -->
+    <Style x:Key="SubMenuItemStyle" TargetType="MenuItem">
+        <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource MenuForegroundBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="MenuItem">
+                    <Grid>
+                    <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="0"
+                        Padding="8,4">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter x:Name="Glyph"
+                                              Grid.Column="0"
+                                              Content="✔"
+                                              Visibility="Collapsed"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                            <ContentPresenter Grid.Column="1"
+                                              ContentSource="Header"
+                                              RecognizesAccessKey="True"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Left"/>
+                        </Grid>
+                    </Border>
+                    <Popup Name="SubMenuPopup"
+                           Placement="Bottom"
+                           IsOpen="{TemplateBinding IsSubmenuOpen}"
+                           AllowsTransparency="True"
+                           Focusable="False"
+                           PopupAnimation="Fade">
+                        <Border Background="{DynamicResource MenuBackgroundBrush}"
+                                BorderBrush="{DynamicResource MenuBorderBrush}"
+                                BorderThickness="1">
+                            <StackPanel IsItemsHost="True"
+                                        KeyboardNavigation.DirectionalNavigation="Cycle"/>
+                        </Border>
+                    </Popup>
+                </Grid>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsChecked" Value="True">
+                        <Setter TargetName="Glyph" Property="Visibility" Value="Visible"/>
+                    </Trigger>
+                    <Trigger Property="IsHighlighted" Value="True">
+                        <Setter Property="Background" Value="{DynamicResource MenuHighlightBrush}"/>
+                        <Setter Property="Foreground" Value="{DynamicResource MenuHighlightTextBrush}"/>
+                    </Trigger>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
     </Style>
 
 </ResourceDictionary>
