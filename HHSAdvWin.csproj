@@ -12,8 +12,8 @@
     <Company>WildTree.JP</Company>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <FileVersion>1.1.1.0</FileVersion>
-	  <Version>1.1.1</Version>
+    <FileVersion>1.1.2.0</FileVersion>
+	  <Version>1.1.2</Version>
   </PropertyGroup>
 
   <ItemGroup>

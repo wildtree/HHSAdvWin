@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -34,10 +35,11 @@ namespace HHSAdvWin
             {
                 get
                 {
-                    return @"<FlowDocument xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'>
+                    var appVersion = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "Unknown";
+                    return $@"<FlowDocument xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'>
 <Paragraph>
 <Span FontSize='16' FontWeight='Bold'>High High School Adventure</Span><LineBreak/>
-<Bold>Version 1.1</Bold>
+<Bold>Version {appVersion}</Bold>
 </Paragraph>
 <Paragraph>
 PalmOS version: hiro © 2002-2004<LineBreak/>
