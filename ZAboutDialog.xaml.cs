@@ -44,7 +44,7 @@ namespace HHSAdvWin
 <Paragraph>
 PalmOS version: hiro © 2002-2004<LineBreak/>
 Android version: hiro © 2011-2025<LineBreak/>
-Web version: hiro © 2012-2024<LineBreak/>
+Web version: hiro © 2012-2025<LineBreak/>
 M5 version: hiro © 2023-2025<LineBreak/>
 Qt version: hiro © 2024<LineBreak/>
 PicoCalc version: hiro © 2025<LineBreak/>

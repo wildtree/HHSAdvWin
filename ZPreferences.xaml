@@ -61,21 +61,24 @@
                 -->
 
                 <!-- ▼ 追加: テーマ選択（ラジオボタン） -->
-                <GroupBox Header="テーマ" Margin="8">
-                    <StackPanel Orientation="Horizontal">
+                <GroupBox Header="テーマ" Margin="8" BorderThickness="0">
+                    <UniformGrid Rows="1" Columns="3" HorizontalAlignment="Center">
                         <RadioButton Content="ライト"
                              GroupName="ThemeMode"
                              Tag="{x:Static local:ThemeType.Light}"
+                                     Style="{StaticResource {x:Type ToggleButton}}"
                              IsChecked="{Binding ThemeMode,Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static local:ThemeType.Light }}" Checked="ThemeMode_Checked"/>
                         <RadioButton Content="ダーク"
                              GroupName="ThemeMode"
                              Tag="{x:Static local:ThemeType.Dark}"
+                                     Style="{StaticResource {x:Type ToggleButton}}"
                              IsChecked="{Binding ThemeMode,Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static local:ThemeType.Dark }}" Checked="ThemeMode_Checked"/>
                         <RadioButton Content="システム"
                              GroupName="ThemeMode"
                              Tag="{x:Static local:ThemeType.System}"
+                                     Style="{StaticResource {x:Type ToggleButton}}"
                              IsChecked="{Binding ThemeMode,Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static local:ThemeType.System }}" Checked="ThemeMode_Checked"/>
-                    </StackPanel>
+                    </UniformGrid>
                 </GroupBox>
 
                 <StackPanel Margin="20">
