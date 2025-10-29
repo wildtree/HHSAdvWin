@@ -165,6 +165,10 @@ namespace HHSAdvWin
         {
             Properties.Save(System.IO.Path.Combine(dataFolder, "HHSAdvWin.json"));
         }
+        public void LoadPreferences()
+        {
+            Properties.Load(System.IO.Path.Combine(dataFolder, "HHSAdvWin.json"));
+        }
 
         private int GetVersion(string dirName)
         {

@@ -21,6 +21,9 @@ namespace HHSAdvWin
             public bool PlaySound { get; set; } = true;
             public ThemeType ThemeMode { get; set; } = ThemeType.Light;
             public int FontSize { get; set; } = 12;
+
+            public int WindowWidth { get; set; } = 320;
+            public int WindowHeight { get; set; } = 450;
         }
 
         private Attributes attributes = new Attributes();

@@ -47,6 +47,7 @@ PicoCalc version: hiro © 2025
 SDL version: hiro © 2025
 Windows version: hiro © 2025
 AvaloniaUI version: hiro © 2025
+.NET MAUI version:  hiro © 2025
 
 - Project ZOBPlus -
 Hayami <hayami@zob.jp>
@@ -131,7 +132,13 @@ look room
 
         public MainWindow()
         {
+            zsystem.LoadPreferences();
+            int w = zsystem.Properties.Attrs.WindowWidth;
+            int h = zsystem.Properties.Attrs.WindowHeight;
             InitializeComponent();
+            Width = w;
+            Height = h;
+            
             Loaded += Init;
         }
 
@@ -715,6 +722,15 @@ look room
 
         private void Close_Click(object sender, RoutedEventArgs e)
             => Close();
+
+        private void AppMainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            RectangleGeometry rollRect = this.RollRect;
+            rollRect.Rect = new Rect { X = 0, Y = 0, Width = e.NewSize.Width, Height = e.NewSize.Height };
+            zsystem.Properties.Attrs.WindowWidth = (int)e.NewSize.Width;
+            zsystem.Properties.Attrs.WindowHeight = (int)e.NewSize.Height;
+            zsystem.SavePreferences();
+        }
     }
 
     public static class MessageBoxHelper

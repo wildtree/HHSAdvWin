@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="ハイハイスクールアドベンチャー" Height="450" Width="320" Closing="MainWindow_Closing"
         WindowStyle="None"
-        AllowsTransparency="True">
+        AllowsTransparency="True" ResizeMode="CanResizeWithGrip" SizeChanged="AppMainWindow_SizeChanged">
     <!-- WindowChrome: OSへキャプション高さ等を通知 -->
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="32"
@@ -62,7 +62,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <!-- メニュー -->
-                        <RowDefinition Height="240"/>
+                        <RowDefinition Height="*"/>
                         <!-- ビットマップ領域 -->
                         <RowDefinition Height="Auto"/>
                         <!-- コマンド入力 -->
@@ -88,7 +88,7 @@
                     <!-- ビットマップ表示領域 -->
                     <Border Grid.Row="1"
                 BorderBrush="Gray" BorderThickness="1" Background="Black">
-                        <Image x:Name="BitmapArea" Width="NaN"/>
+                        <Image x:Name="BitmapArea" Width="NaN" MinHeight="240"/>
                     </Border>
 
                     <!-- コマンド入力（1行） -->
@@ -120,7 +120,7 @@
                       Visibility="Collapsed">
                     <Grid.Clip>
                         <!-- Y=32 から下だけ描画 -->
-                        <RectangleGeometry Rect="0,0,320,450"/>
+                        <RectangleGeometry x:Name="RollRect" Rect="0,0,320,450"/>
                     </Grid.Clip>
 
                     <Canvas>
