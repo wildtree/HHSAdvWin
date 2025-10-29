@@ -67,7 +67,7 @@ namespace HHSAdvWin
                 typeface,
                 fontSize,
                 Brushes.White,
-                dpi.PixelsPerDip
+                96 //dpi.PixelsPerDip
             )
             {
                 TextAlignment = TextAlignment.Center,
@@ -75,8 +75,7 @@ namespace HHSAdvWin
                 MaxTextHeight = double.PositiveInfinity,
                 MaxLineCount = int.MaxValue
             };
-
-            int bmpWidth = (int)Math.Ceiling(formatted.WidthIncludingTrailingWhitespace) + 4;
+            int bmpWidth = (int)Owner.RollRect.Rect.Width;
             int bmpHeight = (int)Math.Ceiling(formatted.Height + formatted.OverhangAfter) + 4;
 
             var dv = new DrawingVisual();
