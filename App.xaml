@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="data/themes/LightTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <local:EnumToBooleanConverter x:Key="EnumToBooleanConverter"/>
+            <local:IntToBooleanConverter x:Key="IntToBooleanConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 

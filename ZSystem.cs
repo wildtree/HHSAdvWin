@@ -151,10 +151,7 @@ namespace HHSAdvWin
             DarkMode = dm;
             Status = GameStatus.Title;
             ZUserData.Instance.load(System.IO.Path.Combine(dataFolder, "data.dat"));
-            if (Application.Current.MainWindow is MainWindow mainWindow)
-            {
-                mainWindow.LogFontSize = Properties.Attrs.FontSize;
-            }
+
             map.Cursor = 76;
         }
         public void Quit()

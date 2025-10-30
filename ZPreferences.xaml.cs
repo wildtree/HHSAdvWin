@@ -35,7 +35,7 @@ namespace HHSAdvWin
         public ZPreferences()
         {
             InitializeComponent();
-            DataContext = Settings;
+            DataContext = new ZPreferencesModel(ZSystem.Instance.Properties);
             switch (Settings.FontSize)
             {
                 case 12:
@@ -70,23 +70,6 @@ namespace HHSAdvWin
             DialogResult = true;
         }
 
-        private void ThemeMode_Checked(object sender, RoutedEventArgs e)
-        {
-            if (sender is RadioButton rb && rb.Tag is ThemeType selected)
-            {
-                // 設定に反映
-                var attrs = DataContext as Attributes;
-                if (attrs != null)
-                {
-                    attrs.ThemeMode = selected;
-                }
-
-                // 実際にテーマを適用
-                bool mode = ((selected == ThemeType.System && ZSystem.Instance.IsSystemInDarkMode) || selected == ThemeType.Dark);
-                ZSystem.Instance.DarkMode = mode;
-            }
-        }
-
         private void Minimize_Click(object sender, RoutedEventArgs e)
             => WindowState = WindowState.Minimized;
 
@@ -95,22 +78,5 @@ namespace HHSAdvWin
 
         private void Close_Click(object sender, RoutedEventArgs e)
             => Close();
-
-        private void FontSize_Checked(object sender, RoutedEventArgs e)
-        {
-            if (sender is RadioButton rb && rb.FontSize > 0)
-            { 
-                // MainWindowのインスタンスを取得してLogFontSizeを設定
-                if (Application.Current.MainWindow is MainWindow mainWindow)
-                {
-                    var attrs = DataContext as Attributes;
-                    if (attrs != null)
-                    {
-                        attrs.FontSize = (int)rb.FontSize;
-                    }
-                    mainWindow.LogFontSize = (int)rb.FontSize;
-                }
-            }
-        }
     }
 }

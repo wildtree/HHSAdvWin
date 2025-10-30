@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HHSAdvWin"
         FocusManager.FocusedElement="{Binding ElementName=InputTextBox}"
+        d:DataContext="{d:DesignInstance Type=local:MainWindowModel}"
+ 
         mc:Ignorable="d"
-        Title="ハイハイスクールアドベンチャー" Height="450" Width="320" Closing="MainWindow_Closing"
+        Title="ハイハイスクールアドベンチャー" Height="{Binding WindowHeight}" Width="{Binding WindowWidth}" Closing="MainWindow_Closing"
         WindowStyle="None"
         AllowsTransparency="True" ResizeMode="CanResizeWithGrip" SizeChanged="AppMainWindow_SizeChanged">
     <!-- WindowChrome: OSへキャプション高さ等を通知 -->
@@ -109,6 +111,7 @@
                                  AcceptsReturn="True"
                                  IsReadOnly="True"
                                  BorderThickness="0"
+                                 FontSize="{Binding FontSize, Mode=TwoWay}"
                                  VerticalScrollBarVisibility="Auto"/>
                     </ScrollViewer>
                 </Grid>

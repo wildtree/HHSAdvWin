@@ -133,12 +133,8 @@ look room
         public MainWindow()
         {
             zsystem.LoadPreferences();
-            int w = zsystem.Properties.Attrs.WindowWidth;
-            int h = zsystem.Properties.Attrs.WindowHeight;
+            DataContext = new MainWindowModel(zsystem.Properties);
             InitializeComponent();
-            Width = w;
-            Height = h;
-            
             Loaded += Init;
         }
 

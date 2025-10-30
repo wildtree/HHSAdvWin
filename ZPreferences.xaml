@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HHSAdvWin"
-        xmlns:zp="clr-class:HHSAdvWin.ZProperties.Attributes"
+        xmlns:zp="clr-class:HHSAdvWin.ZPreferncesModel" 
+        d:DataContext="{d:DesignInstance Type=local:ZPreferencesModel}"
         mc:Ignorable="d"
         Title="設定" SizeToContent="WidthAndHeight" ResizeMode="NoResize"
         WindowStyle="None"
@@ -45,7 +46,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="オープニングを再生します" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                    <ToggleButton Grid.Column="1" x:Name="playOpening" Style="{StaticResource SlideSwitchStyle}" IsChecked="{Binding OpeningRoll}" VerticalAlignment="Center"/>
+                    <ToggleButton Grid.Column="1" x:Name="playOpening" Style="{StaticResource SlideSwitchStyle}" IsChecked="{Binding OpeningRoll, Mode=TwoWay}" VerticalAlignment="Center"/>
                 </Grid>
                 <Grid Margin="16,8,16,8">
                     <Grid.ColumnDefinitions>
@@ -53,7 +54,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="音を鳴らします" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                    <ToggleButton Grid.Column="1" x:Name="playSound" Style="{StaticResource SlideSwitchStyle}" IsChecked="{Binding PlaySound}" VerticalAlignment="Center"/>
+                    <ToggleButton Grid.Column="1" x:Name="playSound" Style="{StaticResource SlideSwitchStyle}" IsChecked="{Binding PlaySound, Mode=TwoWay}" VerticalAlignment="Center"/>
                 </Grid>
                 <!--
                 <CheckBox x:Name="playOpening" Content="オープニングを再生します" Margin="8,8,8,8" IsChecked="{Binding OpeningRoll}"/>
@@ -66,18 +67,18 @@
                         <RadioButton Content="ライト"
                              GroupName="ThemeMode"
                              Tag="{x:Static local:ThemeType.Light}"
-                                     Style="{StaticResource {x:Type ToggleButton}}"
-                             IsChecked="{Binding ThemeMode,Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static local:ThemeType.Light }}" Checked="ThemeMode_Checked"/>
+                             Style="{StaticResource {x:Type ToggleButton}}"
+                             IsChecked="{Binding ThemeMode, Mode=TwoWay, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static local:ThemeType.Light }}"/>
                         <RadioButton Content="ダーク"
                              GroupName="ThemeMode"
                              Tag="{x:Static local:ThemeType.Dark}"
-                                     Style="{StaticResource {x:Type ToggleButton}}"
-                             IsChecked="{Binding ThemeMode,Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static local:ThemeType.Dark }}" Checked="ThemeMode_Checked"/>
+                             Style="{StaticResource {x:Type ToggleButton}}"
+                             IsChecked="{Binding ThemeMode, Mode=TwoWay,Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static local:ThemeType.Dark }}"/>
                         <RadioButton Content="システム"
                              GroupName="ThemeMode"
                              Tag="{x:Static local:ThemeType.System}"
-                                     Style="{StaticResource {x:Type ToggleButton}}"
-                             IsChecked="{Binding ThemeMode,Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static local:ThemeType.System }}" Checked="ThemeMode_Checked"/>
+                             Style="{StaticResource {x:Type ToggleButton}}"
+                             IsChecked="{Binding ThemeMode, Mode=TwoWay,Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static local:ThemeType.System }}"/>
                     </UniformGrid>
                 </GroupBox>
 
@@ -89,25 +90,29 @@
                     <!-- フォントサイズ選択ボタン群 -->
                     <UniformGrid Rows="1" Columns="4" HorizontalAlignment="Center">
                         <RadioButton x:Name="FontSizeBtn12" Content="Aあ"
-                         GroupName="FontSizeGroup"
-                         FontSize="12"
-                         Style="{StaticResource {x:Type ToggleButton}}"
-                         Checked="FontSize_Checked"/>
+                                     GroupName="FontSizeGroup"
+                                     FontSize="12"
+                                     Style="{StaticResource {x:Type ToggleButton}}"
+                                     IsChecked="{Binding FontSize, Mode=TwoWay, Converter={StaticResource IntToBooleanConverter}, ConverterParameter=12}"
+                                     Margin="5,0"/>
                         <RadioButton x:Name="FontSizeBtn16" Content="Aあ"
-                         GroupName="FontSizeGroup"
-                         FontSize="16"
-                         Style="{StaticResource {x:Type ToggleButton}}"
-                         Checked="FontSize_Checked" Margin="5,0"/>
+                                     GroupName="FontSizeGroup"
+                                     FontSize="16"
+                                     Style="{StaticResource {x:Type ToggleButton}}"
+                                     IsChecked="{Binding FontSize, Mode=TwoWay, Converter={StaticResource IntToBooleanConverter}, ConverterParameter=16}"
+                                     Margin="5,0"/>
                         <RadioButton x:Name="FontSizeBtn20" Content="Aあ"
-                         GroupName="FontSizeGroup"
-                         FontSize="20"
-                         Style="{StaticResource {x:Type ToggleButton}}"
-                         Checked="FontSize_Checked" Margin="5,0"/>
+                                     GroupName="FontSizeGroup"
+                                     FontSize="20"
+                                     Style="{StaticResource {x:Type ToggleButton}}"
+                                     IsChecked="{Binding FontSize, Mode=TwoWay, Converter={StaticResource IntToBooleanConverter}, ConverterParameter=20}"
+                                     Margin="5,0"/>
                         <RadioButton x:Name="FontSizeBtn24" Content="Aあ"
-                         GroupName="FontSizeGroup"
-                         FontSize="24"
-                         Style="{StaticResource {x:Type ToggleButton}}"
-                         Checked="FontSize_Checked" Margin="5,0"/>
+                                     GroupName="FontSizeGroup"
+                                     FontSize="24"
+                                     Style="{StaticResource {x:Type ToggleButton}}"
+                                     IsChecked="{Binding FontSize, Mode=TwoWay, Converter={StaticResource IntToBooleanConverter}, ConverterParameter=24}"
+                                     Margin="5,0"/>
                     </UniformGrid>
 
                 </StackPanel>
